@@ -6,7 +6,9 @@ Python:
 <4> Filter
 <5> Reduce
 <6> Iter
-
+<7> Numpy
+	-np.where()
+	-np.linspace()
 
 ---List Comprehension---
 
@@ -105,3 +107,23 @@ Python:
 
 	Iter is used to make an iter object of any object. Thus the ".__next__()" function can be used.
 	Iter can be applied to file, list, dictionary, enumerate etc.
+
+---Numpy---
+	---np.where()---
+		It is used to find the index of numpy arrar which satisfy the following condition.
+		General Syntax is:
+			np.where(CONDITION,ARRAY_NAME)
+		Example:
+		Find all indices of elements >5 and <1 in array X and increment element in those index in array Y.
+		x = np.array([2,4,2,1,5,6,7,8])
+		y = np.array([12,14,12,11,15,16,17,18])
+		select_indices = np.where( np.logical_or( x < 1, x > 5 ) )
+		y[select_indices] +=100 ; print y
+		array([ 12,  14,  12,  11,  15, 116, 117, 118])
+		Used in hought transform too
+	---np.linspace()---
+		It is used to create an array of evenly spaced numbers within a specified range.
+		General syntax is :
+			np.linspace(START_NO,STOP_NO,NO_PTS)
+		Example:
+		np.linspace(10,25,12)
