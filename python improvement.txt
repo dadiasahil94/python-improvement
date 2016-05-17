@@ -1,4 +1,4 @@
-Python:
+﻿Python Index:
 
 <1> List Comprehension
 <2> Generators
@@ -17,42 +17,44 @@ Python:
 	L = [mapping-expression for element in source-list if filter-expression]
 
 	Example : Calculate powers of 2 of even numbers using List Comprehension
-	Powers_of_two = [ 2**n for n in range(1,100) if x/2.0==0 ]
+		Powers_of_two = [ 2**n for n in range(1,100) if x/2.0==0 ]
 
 	Example : Convert degree celcius to farhenite
-  celsius = [10.0,26.8,64,2]
-	farhenite = [ (9.0*x/5 +32) for x in celsius ]
+		celsius = [10.0,26.8,64,2]
+		farhenite = [ (9.0*x/5 +32) for x in celsius ]
 
 	Example : Dot Product of 2 list
-	list1 = [ 'a' ,'b' , 'c' ]
-	list2 = [ 'd','e' , 'f' ]
-	dot_prdt = [ (str(x)+str(y))  for x list1 for y in list2 ]
-	dot_prdt= [ 'ad' , 'be' , 'cf' ]
+		list1 = [ 'a' ,'b' , 'c' ]
+		list2 = [ 'd','e' , 'f' ]
+		dot_prdt = [ (str(x)+str(y))  for x list1 for y in list2 ]
+		dot_prdt= [ 'ad' , 'be' , 'cf' ]
 
 
 ---Generators---
 
-	To create values on the fly as and when needed. This helps to reduce memory consumption.
+	To create values on the fly as and when needed. This helps to reduce memory
+	consumption.
 
-	Generators are like functions which contain a 'yield' statement. The yield statement return a value.  When the generator is called
-	again using '.next()' the execution starts from the line after most recent yield statement. In this way it is different from regular function.
+	Generators are like functions which contain a 'yield' statement. The yield
+	statement return a value. When the generator is called again using '.next()'
+	the execution starts from the line after most recent yield 	statement.In
+	this way it is different from regular function.
 
 	Example : Get Fib series.
-	def gen_fib(n):
-	''' generators fiboonachi series using generators'''
-	a ,b ,counter = 0,1,0
-	while True:
-		if(counter > n):
-			break
-		yield a
-		a = b
-    b = a+b
+		def gen_fib(n):
+		''' generators fiboonachi series using generators'''
+		a ,b ,counter = 0,1,0
+		while True:
+			if(counter > n):
+				break
+			yield a
+			a = b
+			b = a+b
 
-	f = gen_fib(5)
-  for number in f:
-    print number
-    f.next()
-
+		f = gen_fib(5)
+		  for number in f:
+		    print number
+		    f.next()
 
 ---Map---
 
@@ -60,70 +62,94 @@ Python:
 	The genreal syntax is :
 	map(function , list1 or sequence1 , list2 or sequence2 .....)
 
-  Example Syntax:
-	map(square , [1,2,3] ) #Note no brackets are used for the function, its square not square()
-	map (math.pow , [1,2,3] , [7,8,9] ) # when using multiple sequence, one to one correspondence is made , so all sequence are of same sizes.
+	Example Syntax:
+		map(square , [1,2,3] ) #Note no brackets are used for the function,
+							   #its square not square()
+		map (math.pow , [1,2,3] , [7,8,9] ) # when using multiple sequence,
+		 									#one to one correspondence is made,
+											#so all sequence are of same sizes.
 
 	Map is faster than List Comprehension when mapping an inbuilt function.
 	Map only takes function and not arbitrary expression, this is the drawback.
-	Example : Use map for squaring
-	map ( math.pow() , [0,1,2] , [4,5,6]  )  #remember map takes only function and not arbitraty expressions
-	map ( x**y , [0,1,2] , [4,5,6] ) #this will give an error since its not a function but an expression. It can be written as,
-	map ( lambda x,y : x**y  , [0,1,2] , [4,5,6])
 
-	If function is 'None', its assumed to be 1 (yes, numeric 1) and	if multiple sequence are given, it return a list of tuples containing items from each sequence by 1-1 correspondece principle
+	Example : Use map for squaring
+		#remember map takes only function and not arbitraty expressions
+		map ( math.pow() , [0,1,2] , [4,5,6]  )
+		#this will give an error since its not a function but an expression
+		map ( x**y , [0,1,2] , [4,5,6] )
+		#It can be written as
+		map ( lambda x,y : x**y  , [0,1,2] , [4,5,6])
+
+	If function is 'None', its assumed to be 1 (yes, numeric 1) and	if multiple
+	sequence are given, it return a list of tuples containing items from each
+	sequence by 1-1 correspondece principle.
 	Example :
-	map (None , [0,1,2] ,[8,6,9])
-	>>> ( [0,8] ,[1,6] , [2,9] )
+		map (None , [0,1,2] ,[8,6,9])
+		>>> ( [0,8] ,[1,6] , [2,9] )
 
 
 ---Filter---
 
-	Filter has the same syntax as map and returns a 'filtered list' as the output according a criteria provided.
+	Filter has the same syntax as map and returns a 'filtered list' as the
+	output according a criteria provided.
 	The genral Syntax is :
 	filter(filtering function , sequence)
 
-  Example syntax:
-	filter ( lambda x : x>4 , [1,2,3,4,5,6,7,8] )
-	>>> [5,6,7,8]
+  	Example syntax:
+		filter ( lambda x : x>4 , [1,2,3,4,5,6,7,8] )
+		>>> [5,6,7,8]
 
-	It has all the properties of map functions except it does not support multiple sequence as that of map and a condition needs to be given in function else it returns the same list.
-	filter ( lambda x : x+4 , [1,2,3,4,5,6,7,8] )
-	>>> [1,2,3,4,5,6,7,8]
+	It has all the properties of map functions except it does not support
+	multiple sequence as that of map and a condition needs to be given in
+	function else it returns the same list.
+		filter ( lambda x : x+4 , [1,2,3,4,5,6,7,8] )
+		>>> [1,2,3,4,5,6,7,8]
 
 
 ---Reduce---
 
-	Reduce has same syntax like filter but takes a function with 2 arguments and reduces a list/sequence to a single value.
+	Reduce has same syntax like filter but takes a function with 2 arguments
+	and reduces a list/sequence to a single value.
 	The General syntax is :
 	reduce ( function with 2 arguments , sequence )
 
-  Example:
-	reduce ( lambda x,y : x+y , [1,2,3] ) #The function always requires "2 ARGUMENTS" and always requires a function and not arbitrary expression.
-	>>> 10
+  	Example:
+		reduce ( lambda x,y : x+y , [1,2,3] ) #The function always requires
+											  #"2 ARGUMENTS" and always requires
+											  #a function and not arbitrary
+											  #expression.
+		>>> 10
 
 
 ---Iter---
 
-	Iter is used to make an iter object of any object. Thus the ".__next__()" function can be used.
+	Iter is used to make an iter object of any object. Thus the ".__next__()"
+	function can be used.
 	Iter can be applied to file, list, dictionary, enumerate etc.
 
+
 ---Numpy---
+
 	---np.where()---
-		It is used to find the index of numpy arrar which satisfy the following condition.
+		Used to find the index of numpy arr which satisfy a condition.
 		General Syntax is:
 			np.where(CONDITION,ARRAY_NAME)
+
 		Example:
-		Find all indices of elements >5 and <1 in array X and increment element in those index in array Y.
-		x = np.array([2,4,2,1,5,6,7,8])
-		y = np.array([12,14,12,11,15,16,17,18])
-		select_indices = np.where( np.logical_or( x < 1, x > 5 ) )
-		y[select_indices] +=100 ; print y
-		array([ 12,  14,  12,  11,  15, 116, 117, 118])
-		Used in hought transform too
+			Find all indices of elements >5 and <1 in array X and increment
+			element in those index in array Y.
+			x = np.array([2,4,2,1,5,6,7,8])
+			y = np.array([12,14,12,11,15,16,17,18])
+			select_indices = np.where( np.logical_or( x < 1, x > 5 ) )
+			y[select_indices] +=100 ; print y
+			array([ 12,  14,  12,  11,  15, 116, 117, 118])
+			Used in hought transform too
+
 	---np.linspace()---
-		It is used to create an array of evenly spaced numbers within a specified range.
+		It is used to create an array of evenly spaced numbers within a
+		specified range.
 		General syntax is :
 			np.linspace(START_NO,STOP_NO,NO_PTS)
+
 		Example:
 		np.linspace(10,25,12)
