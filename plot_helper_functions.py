@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
+
 '''
     Library to plot data:
     ***In end, always write plt.show() to show the plots***
@@ -38,43 +39,42 @@ import numpy as np
 '''
 
 
-
-def SCATTER_PLOT_3D(x,y,z,marker='o',color='b',xlabel="X-Axis",ylabel = "Y-Axis",zlabel="Z-Axis",title = '3D SCATTER PLOT'):
+def SCATTER_PLOT_3D(x,y,z,figure_no=1,marker='o',color='b',xlabel="X-Axis",ylabel = "Y-Axis",zlabel="Z-Axis",title = '3D SCATTER PLOT', labs = 'Datapoint_1' ):
     ''' 3d scatter plot of data points'''
-    fig = plt.figure()
+    fig = plt.figure(figure_no)
     ax = fig.add_subplot(111,projection='3d')
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.set_zlabel(zlabel)
     ax.set_title(title)
-    scatter = ax.scatter(x,y,z,color=color,marker=marker)
-    return scatter
+    scatter = ax.scatter(x,y,z,color=color,marker=marker, label = labs)
+    return scatter , figure_no
 
-def LINE_PLOT_3D(x,y,z,marker='o',color='b',xlabel="X-Axis",ylabel = "Y-Axis",zlabel="Z-Axis",title = '3D LINE PLOT'):
+def LINE_PLOT_3D(x,y,z,figure_no=1,marker='o',color='b',xlabel="X-Axis",ylabel = "Y-Axis",zlabel="Z-Axis",title = '3D LINE PLOT'):
     ''' 3d line plot of data points'''
-    fig = plt.figure()
+    fig = plt.figure(figure_no)
     ax = fig.add_subplot(111,projection='3d')
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.set_zlabel(zlabel)
     ax.set_title(title)
     line_plot = ax.plot(x,y,z,color=color,marker=marker)
-    return line_plot
+    return line_plot , figure_no
 
-def WIREFRAME_PLOT_3D(x,y,z,rstride=1,cstride=1,xlabel="X-Axis",ylabel = "Y-Axis",zlabel="Z-Axis" , title = '3D WIREFRAME PLOT'):
+def WIREFRAME_PLOT_3D(x,y,z,figure_no=1,rstride=1,cstride=1,xlabel="X-Axis",ylabel = "Y-Axis",zlabel="Z-Axis" , title = '3D WIREFRAME PLOT'):
     ''' 3d wireframe plot of data'''
-    fig = plt.figure()
+    fig = plt.figure(figure_no)
     ax = fig.add_subplot(111,projection='3d')
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.set_zlabel(zlabel)
     ax.set_title(title)
     wireplot = ax.plot_wireframe(x,y,z,rstride=rstride,cstride=cstride)
-    return wireplot
+    return wireplot , figure_no
 
-def SURFACE_PLOT_3D(x,y,z,rstride=1,cstride=1,xlabel="X-Axis",ylabel = "Y-Axis",zlabel="Z-Axis",title = '3D SURFACE PLOT'):
+def SURFACE_PLOT_3D(x,y,z,figure_no=1,rstride=1,cstride=1,xlabel="X-Axis",ylabel = "Y-Axis",zlabel="Z-Axis",title = '3D SURFACE PLOT'):
     ''' 3d surface plot of data'''
-    fig = plt.figure()
+    fig = plt.figure(figure_no)
     ax = fig.add_subplot(111,projection='3d')
     # X,Y = np.meshgrid(x,y)
     ax.set_xlabel(xlabel)
@@ -83,34 +83,34 @@ def SURFACE_PLOT_3D(x,y,z,rstride=1,cstride=1,xlabel="X-Axis",ylabel = "Y-Axis",
     ax.set_title(title)
     surf = ax.plot_surface(x,y,z,rstride=rstride,cstride=cstride,cmap=cm.jet)
     fig.colorbar(surf, shrink=0.5, aspect=5)
-    return surf
+    return surf, figure_no
 
-def CONTOUR_PLOT_3D(x,y,z,cmap=cm.coolwarm,xlabel="X-Axis",ylabel = "Y-Axis",zlabel="Z-Axis",title='3D CONTOUR PLOT'):
+def CONTOUR_PLOT_3D(x,y,z,figure_no=1,cmap=cm.coolwarm,xlabel="X-Axis",ylabel = "Y-Axis",zlabel="Z-Axis",title='3D CONTOUR PLOT'):
     ''' 3d wireframe plot of data'''
-    fig = plt.figure()
+    fig = plt.figure(figure_no)
     ax = fig.add_subplot(111,projection='3d')
     ax.set_ylabel(ylabel)
     ax.set_zlabel(zlabel)
     ax.set_xlabel(xlabel)
     ax.set_title(title)
     cont = ax.plot_surface(x,y,z,cmap=cm.coolwarm)
-    return cont
+    return cont, figure_no
 
-def SCATTER_PLOT_2D(x,y=None,marker='o',color='g',xlabel="X-Axis",ylabel = "Y-Axis",title = '2D SCATTER PLOT'):
+def SCATTER_PLOT_2D(x,y=None,figure_no=1,marker='o',color='g',xlabel="X-Axis",ylabel = "Y-Axis",title = '2D SCATTER PLOT', labs = 'Datapoint_1' ):
     ''' 2d scatter plot of data--y values not necessary'''
-    fig = plt.figure()
+    fig = plt.figure(figure_no)
     ax = ax = fig.add_subplot(111)
     ax.set_ylabel(ylabel)
     ax.set_xlabel(xlabel)
     ax.set_title(title)
     if y == None:
         y = np.arange(len(x))
-        scatter = ax.scatter(y,x,marker=marker,color=color)
+        scatter = ax.scatter(y,x,marker=marker,color=color, label = labs )
         ax.set_ylabel(ylabel+'--your values are here')
-        return scatter
+        return scatter , figure_no
     else:
-        scatter = ax.scatter(x,y,marker=marker,color=color)
-        return scatter
+        scatter = ax.scatter(x,y,marker=marker,color=color, label = labs )
+        return scatter, figure_no
 
 # def SCATTER_PLOT_2D(x,y,figure_no=1,xlabel="X-Axis",ylabel = "Y-Axis",title = '2D SCATTER PLOT'):
 #     ''' 2d scatter plot of data'''
@@ -122,9 +122,9 @@ def SCATTER_PLOT_2D(x,y=None,marker='o',color='g',xlabel="X-Axis",ylabel = "Y-Ax
 #     scatter = plt.scatter(x,y)
 #     return scatter
 
-def LINE_PLOT_2D(x,y=None,marker='o',color='b',xlabel="X-Axis",ylabel = "Y-Axis",title = '2D LINE PLOT'):
+def LINE_PLOT_2D(x,y=None,figure_no=1,marker='o',color='b',xlabel="X-Axis",ylabel = "Y-Axis",title = '2D LINE PLOT'):
     ''' 2d line plot of data--y values not necessary'''
-    fig = plt.figure()
+    fig = plt.figure(figure_no)
     ax = fig.add_subplot(111)
     ax.set_ylabel(ylabel)
     ax.set_xlabel(xlabel)
@@ -133,10 +133,10 @@ def LINE_PLOT_2D(x,y=None,marker='o',color='b',xlabel="X-Axis",ylabel = "Y-Axis"
         y = np.arange(len(x))
         line = ax.plot(y,x,marker=marker,color=color)
         ax.set_ylabel(ylabel+'--your values are here')
-        return line
+        return line , figure_no
     else:
         line = ax.plot(x,y,marker=marker,color=color)
-        return line
+        return line , figure_no
 
 # def HISTOGRAM_PLOT_1D(x,bins=20,figure_no=1,normed=False,color='b',xlabel="Data points",ylabel = "Counts",title = "1D HISTOGRAM"):
 #     ''' Plots 1d histogram'''
@@ -155,9 +155,9 @@ def LINE_PLOT_2D(x,y=None,marker='o',color='b',xlabel="X-Axis",ylabel = "Y-Axis"
 #     hist = ax.plot(n)
 #     return hist
 
-def HIST_PLOT_1D(x,normed=False,color='b',xlabel="Data points",ylabel = "Counts",title = "1D HISTOGRAM"):
+def HIST_PLOT_1D(x,figure_no=1,n_bins=20,normed=False,color='b',xlabel="Data points",ylabel = "Counts",title = "1D HISTOGRAM"):
     ''' Plots 1d histogram'''
-    fig = plt.figure()
+    fig = plt.figure(figure_no)
     ax = fig.add_subplot(111)
     ax.set_ylabel(ylabel)
     ax.set_xlabel(xlabel)
@@ -194,7 +194,8 @@ def HIST_PLOT_2D(x,y,bins=20,figure_no=2,normed=False,xlabel="X-Data point",ylab
         cbar.ax.set_ylabel('Counts')
     return H
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
+    # pass
 
     # # x= np.linspace(0,20000,12)
     # # # y= np.linspace(-200,20,12)
